@@ -1,25 +1,29 @@
-const burger = document.querySelector('.header__burger');
-burger.addEventListener('click', () => {
-  const menu = document.querySelector('.header__menu');
-  burger.classList.toggle('active');
-  menu.classList.toggle('active');
-});
+const buttonTrain = document.querySelector('#radio-one');
+const buttonPlay = document.querySelector('#radio-two');
+const burgerMenu = document.querySelector('.header__burger');
 
-const train = document.querySelector('#radio-one');
-const play = document.querySelector('#radio-two');
+function toggleClassActiveBurgerMenu() {
+  const headerMenu = document.querySelector('.header__menu');
+  burgerMenu.classList.toggle('active');
+  headerMenu.classList.toggle('active');
+}
 
-train.addEventListener('click', () => {
-  const gallery = document.querySelector('.first-page__list');
-  const pictures = gallery.querySelectorAll('.first-page__link');
-  pictures.forEach((element) => {
-    element.classList.remove('red');
-  });
-});
-
-play.addEventListener('click', () => {
-  const gallery = document.querySelector('.first-page__list');
-  const pictures = gallery.querySelectorAll('.first-page__link');
+function addClassActiveFromPictures() {
+  const firstPageGallery = document.querySelector('.first-page__list');
+  const pictures = firstPageGallery.querySelectorAll('.first-page__link');
   pictures.forEach((element) => {
     element.classList.add('red');
   });
-});
+}
+
+function removeClassActiveFromPictures() {
+  const firstPageGallery = document.querySelector('.first-page__list');
+  const pictures = firstPageGallery.querySelectorAll('.first-page__link');
+  pictures.forEach((element) => {
+    element.classList.remove('red');
+  });
+}
+
+buttonTrain.addEventListener('click', removeClassActiveFromPictures);
+buttonPlay.addEventListener('click', addClassActiveFromPictures);
+burgerMenu.addEventListener('click', toggleClassActiveBurgerMenu);
