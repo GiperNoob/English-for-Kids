@@ -1,0 +1,159 @@
+.container {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 0px 0px 0px 0px;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+
+.header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.header__body {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    align-items: center;
+}
+
+.header__list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 85px;
+} 
+
+.header__list li {
+    margin: 0px 0px 20px 0px;
+}
+
+.header__link {
+    font-size: 22px;
+    padding: 0 10px;
+    text-decoration: none;
+    margin: 0 0 0 60px;
+    color: #ffffff; 
+    text-align: left;
+}
+
+.header__burger {
+    position: relative;
+    width: 30px;
+    height: 20px;
+}
+
+.header__burger:before,
+.header__burger:after {
+    content: '';
+    background-color: #cdcdcd;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    left: 0;
+    transition: all ease-in-out .3s;
+}
+
+.header__burger span {
+    background-color: #cdcdcd;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    left: 0;
+    top: 9px;
+    transition: all ease-in-out .3s;
+}
+
+.header__burger:before {
+    top: 0;
+}
+
+.header__burger:after {
+    bottom: 0;
+}
+
+.header__burger.active:before {
+    transform: rotate(45deg);
+    top: 8px;
+}
+
+.header__burger.active:after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+}
+
+.header__burger.active span {
+    transform: scale(0);
+}
+
+.header__menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 380px;
+    background: linear-gradient(40deg,#00bf82,#0099ae);
+    transition: all ease-in-out .5s;
+}
+
+.header__menu.active {
+    left: 0;
+}
+
+.switch-field {
+	display: flex;
+	margin-bottom: 36px;
+	overflow: hidden;
+}
+
+.switch-field input {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.switch-field label {
+	background-color: #e4e4e4;
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 14px;
+	line-height: 1;
+	text-align: center;
+	padding: 8px 16px;
+	margin-right: -1px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+	transition: all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+	cursor: pointer;
+}
+
+.switch-field input:checked + label {
+	background-color: #a5dc86;
+	box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+	border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+	border-radius: 0 4px 4px 0;
+} 
