@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { Picture } from './js/Section.js';
-import { pictures } from './js/first-page-pictures.js';
+import { picturesData } from './js/first-page-pictures.js';
 
 const buttonTrain = document.querySelector('#radio-one');
 const buttonPlay = document.querySelector('#radio-two');
@@ -41,21 +41,21 @@ function removeFirstPageContent() {
 
 function generatePictures(data) {
   const picturesList = [];
-  data.forEach((picture) => {
-    picturesList.push(new Picture(picture));
+  data.forEach((pictureAttributes) => {
+    picturesList.push(new Picture(pictureAttributes));
   });
   return picturesList;
 }
 
 function renderPicturesToDom() {
   const firstPageContent = removeFirstPageContent();
-  generatePictures(pictures).forEach((picture) => {
+  generatePictures(picturesData).forEach((picture) => {
     firstPageContent.append(picture.generatePicture());
   });
 }
 
 window.onload = () => {
-  if (pictures) {
+  if (picturesData) {
     renderPicturesToDom();
   }
 };

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-export const pictures = [
+export const picturesData = [
   {
     id: 1,
     title: 'Action (set A)',

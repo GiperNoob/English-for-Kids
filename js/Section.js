@@ -10,12 +10,11 @@ export class Picture {
   generatePicture() {
     let template = '';
     const unorderedList = document.createElement('li');
-    unorderedList.setAttribute('data-id', this.id);
 
-    if (this.urlToImage) {
-      template += '<a href="#" class="first-page__link">';
+    if (this.id) {
+      template += `<a href="#" data-id = "${this.id}" class="first-page__link">`;
 
-      if (this.title) {
+      if (this.urlToImage) {
         template += `<img src=${this.urlToImage} alt="">`;
       }
 
