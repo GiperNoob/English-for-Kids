@@ -1,10 +1,10 @@
 /* eslint-disable import/prefer-default-export */
-export const cards = [
+export const cardsData = [
   {
     id: 1,
     word: 'cry',
     translate: 'плакать',
-    imageSrc: 'images/cry.jpg',
+    image: 'images/cry.jpg',
     audioSrc: 'audio/cry.mp3',
   },
   {

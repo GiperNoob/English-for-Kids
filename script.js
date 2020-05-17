@@ -1,6 +1,8 @@
 /* eslint-disable import/extensions */
 import { Picture } from './js/Section.js';
 import { picturesData } from './js/first-page-pictures.js';
+import { Card } from './js/Card.js';
+import { cardsData } from './js/cards.js';
 
 const buttonTrain = document.querySelector('#radio-one');
 const buttonPlay = document.querySelector('#radio-two');
@@ -54,8 +56,30 @@ function renderPicturesToDom() {
   });
 }
 
+function removeSecondPageContent() {
+  const secondPageContent = document.querySelector('.container');
+  secondPageContent.innerHTML = '';
+  return secondPageContent;
+}
+
+function generateCards(data) {
+  const cardsList = [];
+  data.forEach((cardsAttributes) => {
+    cardsList.push(new Card(cardsAttributes));
+  });
+  return cardsList;
+}
+
+function renderCardsToDom() {
+  const secondPageContent = removeSecondPageContent();
+  generateCards(cardsData).forEach((picture) => {
+    secondPageContent.append(picture.generateCard());
+  });
+}
+
 window.onload = () => {
   if (picturesData) {
     renderPicturesToDom();
+    renderCardsToDom();
   }
 };
