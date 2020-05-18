@@ -39,10 +39,10 @@ buttonTrain.addEventListener('click', removeClassActiveFromPictures);
 buttonPlay.addEventListener('click', addClassActiveFromPictures);
 burgerMenu.addEventListener('click', toggleClassActiveBurgerMenu);
 
-function removeFirstPageContent() {
-  const firstPageContent = document.querySelector('.container');
-  firstPageContent.innerHTML = '';
-  return firstPageContent;
+function removePageContent() {
+  const secondPageContent = document.querySelector('.container');
+  secondPageContent.innerHTML = '';
+  return secondPageContent;
 }
 
 function generatePictures(data) {
@@ -54,19 +54,13 @@ function generatePictures(data) {
 }
 
 function renderPicturesToDom() {
-  const firstPageContent = removeFirstPageContent();
+  const firstPageContent = removePageContent();
   const firstPageList = document.createElement('div');
   firstPageList.className = 'first-page__list';
   generatePictures(picturesData).forEach((picture) => {
     firstPageList.append(picture.generatePicture());
   });
   firstPageContent.append(firstPageList);
-}
-
-function removeSecondPageContent() {
-  const secondPageContent = document.querySelector('.container');
-  secondPageContent.innerHTML = '';
-  return secondPageContent;
 }
 
 function generateCards(data) {
@@ -78,7 +72,7 @@ function generateCards(data) {
 }
 
 function renderCardsToDom(id) {
-  const secondPageContent = removeSecondPageContent();
+  const secondPageContent = removePageContent();
   generateCards(cardsData).forEach((picture) => {
     if (picture.id === Number(id)) {
       secondPageContent.append(picture.generateCard());
@@ -99,5 +93,8 @@ const firstPageGallery = document.querySelector('.container');
 firstPageGallery.addEventListener('click', (event) => {
   if (event.target.dataset.id > 0) {
     renderCardsToDom(event.target.dataset.id);
+  }
+  if (event.target.classList.contains('rotate')) {
+    event.target.parentElement.classList.add('rot');
   }
 });
