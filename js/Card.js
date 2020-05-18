@@ -20,9 +20,9 @@ export class Card {
       template += `<div class="front" data-id = "${this.id}" style = "background-image: url(${this.image});">`;
       template += `<div class = "card-header">${this.word}</div>`;
       template += '</div>';
-      //   template += `<div class="back" style = "background-image: url(${this.image};")>`;
-      //   template += `<div class = "card-header">${this.translate}</div>`;
-      //   template += '</div>';
+      template += `<div class="back" data-id = "${this.id}" style = "background-image: url(${this.image});">`;
+      template += `<div class = "card-header">${this.translate}</div>`;
+      template += '</div>';
       template += '<div class = "rotate"></div>';
       template += '</div>';
     }

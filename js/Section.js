@@ -9,13 +9,13 @@ export class Picture {
   // picture generator
   generatePicture() {
     let template = '';
-    const unorderedList = document.createElement('li');
+    const unorderedList = document.createElement('div');
 
     if (this.id) {
       template += `<a href="#" data-id = "${this.id}" class="first-page__link">`;
 
       if (this.urlToImage) {
-        template += `<img src=${this.urlToImage} alt="">`;
+        template += `<img src=${this.urlToImage} data-id = "${this.id}" alt="">`;
       }
 
       if (this.title) {

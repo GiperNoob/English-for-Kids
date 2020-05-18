@@ -220,7 +220,7 @@ export const cardsData = [
   {
     id: 4,
     word: 'old',
-    translate: 'толкать',
+    translate: 'старый',
     image: 'images/old.jpg',
     audioSrc: 'audio/old.mp3',
   },

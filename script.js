@@ -16,19 +16,23 @@ function toggleClassActiveBurgerMenu() {
 }
 
 function addClassActiveFromPictures() {
-  const firstPageGallery = document.querySelector('.first-page__list');
-  const picturesActive = firstPageGallery.querySelectorAll('.first-page__link');
-  picturesActive.forEach((element) => {
-    element.classList.add('red');
-  });
+  if (document.querySelector('.first-page__list')) {
+    const firstPageGallery = document.querySelector('.first-page__list');
+    const picturesActive = firstPageGallery.querySelectorAll('.first-page__link');
+    picturesActive.forEach((element) => {
+      element.classList.add('red');
+    });
+  }
 }
 
 function removeClassActiveFromPictures() {
-  const firstPageGallery = document.querySelector('.first-page__list');
-  const picturesActive = firstPageGallery.querySelectorAll('.first-page__link');
-  picturesActive.forEach((element) => {
-    element.classList.remove('red');
-  });
+  if (document.querySelector('.first-page__list')) {
+    const firstPageGallery = document.querySelector('.first-page__list');
+    const picturesActive = firstPageGallery.querySelectorAll('.first-page__link');
+    picturesActive.forEach((element) => {
+      element.classList.remove('red');
+    });
+  }
 }
 
 buttonTrain.addEventListener('click', removeClassActiveFromPictures);
@@ -36,7 +40,7 @@ buttonPlay.addEventListener('click', addClassActiveFromPictures);
 burgerMenu.addEventListener('click', toggleClassActiveBurgerMenu);
 
 function removeFirstPageContent() {
-  const firstPageContent = document.querySelector('.first-page__list');
+  const firstPageContent = document.querySelector('.container');
   firstPageContent.innerHTML = '';
   return firstPageContent;
 }
@@ -51,9 +55,12 @@ function generatePictures(data) {
 
 function renderPicturesToDom() {
   const firstPageContent = removeFirstPageContent();
+  const firstPageList = document.createElement('div');
+  firstPageList.className = 'first-page__list';
   generatePictures(picturesData).forEach((picture) => {
-    firstPageContent.append(picture.generatePicture());
+    firstPageList.append(picture.generatePicture());
   });
+  firstPageContent.append(firstPageList);
 }
 
 function removeSecondPageContent() {
@@ -79,13 +86,18 @@ function renderCardsToDom(id) {
   });
 }
 
-window.onload = () => {
-  if (picturesData) {
-    renderPicturesToDom();
-  }
-};
-
 const headerList = document.querySelector('.header__list');
 headerList.addEventListener('click', (event) => {
-  renderCardsToDom(event.target.dataset.id);
+  if (event.target.dataset.id > 0) {
+    renderCardsToDom(event.target.dataset.id);
+  } else {
+    renderPicturesToDom();
+  }
+});
+
+const firstPageGallery = document.querySelector('.container');
+firstPageGallery.addEventListener('click', (event) => {
+  if (event.target.dataset.id > 0) {
+    renderCardsToDom(event.target.dataset.id);
+  }
 });
