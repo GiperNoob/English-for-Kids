@@ -42,7 +42,7 @@
 }
 
 .header__burger {
-    position: relative;
+    position: fixed;
     z-index: 51;
     width: 30px;
     height: 21px;
@@ -111,10 +111,15 @@
 }
 
 .switch-field {
+    position: fixed;
     display: flex;
     margin-top: 55px;
-	margin-bottom: 36px;
-	overflow: hidden;
+    margin-bottom: 36px;
+    overflow: hidden;
+    top: 10px;
+    right: 87px;
+    z-index: 55;
+
 }
 
 .switch-field input {

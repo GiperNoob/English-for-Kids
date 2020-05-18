@@ -70,16 +70,22 @@ function generateCards(data) {
   return cardsList;
 }
 
-function renderCardsToDom() {
+function renderCardsToDom(id) {
   const secondPageContent = removeSecondPageContent();
   generateCards(cardsData).forEach((picture) => {
-    secondPageContent.append(picture.generateCard());
+    if (picture.id === Number(id)) {
+      secondPageContent.append(picture.generateCard());
+    }
   });
 }
 
 window.onload = () => {
   if (picturesData) {
     renderPicturesToDom();
-    renderCardsToDom();
   }
 };
+
+const headerList = document.querySelector('.header__list');
+headerList.addEventListener('click', (event) => {
+  renderCardsToDom(event.target.dataset.id);
+});
