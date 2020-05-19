@@ -8,7 +8,7 @@ const buttonTrain = document.querySelector('#radio-one');
 const buttonPlay = document.querySelector('#radio-two');
 const burgerMenu = document.querySelector('.header__burger');
 
-
+// показать-спрятать бургер-меню
 function toggleClassActiveBurgerMenu() {
   const headerMenu = document.querySelector('.header__menu');
   burgerMenu.classList.toggle('active');
@@ -80,6 +80,7 @@ function renderCardsToDom(id) {
   });
 }
 
+// сорт 2 страницы из меню-бургер по id
 const headerList = document.querySelector('.header__list');
 headerList.addEventListener('click', (event) => {
   if (event.target.dataset.id > 0) {
@@ -89,14 +90,29 @@ headerList.addEventListener('click', (event) => {
   }
 });
 
+// возврат карточки в прежнее положение
+function handler(event) {
+  if (event.type === 'mouseout' && event.target.classList.contains('back')) {
+    event.target.parentElement.classList.remove('rot');
+  }
+}
+
+// Обработчики на контейнере первой и второй страниц
 const firstPageGallery = document.querySelector('.container');
+firstPageGallery.onmouseout = handler;
 firstPageGallery.addEventListener('click', (event) => {
+  // если есть id и  id > 0 то это титульная страница и можно по ним сделать сортировку 2 страницы
   if (event.target.dataset.id > 0) {
     renderCardsToDom(event.target.dataset.id);
   }
+
+  // если это div class = 'rotate' то делаем переворот картинки
   if (event.target.classList.contains('rotate')) {
     event.target.parentElement.classList.add('rot');
+    handler(event);
   }
+
+  // если картинка то воспроизвести озвучку
   if (event.target.classList.contains('front')) {
     const sourceNameAudio = event.target.firstElementChild.innerText;
     const audio = new Audio(`audio/${sourceNameAudio}.mp3`);
