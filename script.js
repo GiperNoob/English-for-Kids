@@ -97,4 +97,9 @@ firstPageGallery.addEventListener('click', (event) => {
   if (event.target.classList.contains('rotate')) {
     event.target.parentElement.classList.add('rot');
   }
+  if (event.target.classList.contains('front')) {
+    const sourceNameAudio = event.target.firstElementChild.innerText;
+    const audio = new Audio(`audio/${sourceNameAudio}.mp3`);
+    audio.play();
+  }
 });

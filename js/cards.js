@@ -387,7 +387,7 @@ export const cardsData = [
   },
   {
     id: 7,
-    word: 'shoes',
+    word: 'shoe',
     translate: 'туфли',
     image: 'images/shoes.jpg',
     audioSrc: 'audio/shoes.mp3',
