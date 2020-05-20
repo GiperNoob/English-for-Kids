@@ -301,6 +301,11 @@
     transform: rotateY(360deg);
 }
 
+.card-cover .back, .card-cover .front {
+    background-size: cover;
+    background-position: 50%;
+}
+
 .rotate {
     position: absolute;
     width: 50px;
@@ -317,12 +322,16 @@
     filter: grayscale(1);
 }
 
-.rotate:hover {
+/* .rotate:hover {
     -webkit-filter: none;
     filter: none;
-}
+} */
 
 .back, .front, .rotate {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+.none {
+    display: none;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable import/extensions */
 import { Picture } from './js/Section.js';
 import { picturesData } from './js/first-page-pictures.js';
@@ -25,6 +26,17 @@ function addClassActiveFromPictures() {
   }
 }
 
+function addClassPlayFromCards() {
+  if (document.querySelector('.card-container')) {
+    const cardContainer = document.querySelector('.container').children;
+    for (let i = 0; i < cardContainer.length; i++) {
+      cardContainer[i].children[0].classList.add('card-cover');
+      cardContainer[i].children[0].children[0].children[0].classList.add('none');
+      cardContainer[i].children[0].children[2].classList.add('none');
+    }
+  }
+}
+
 function removeClassActiveFromPictures() {
   if (document.querySelector('.first-page__list')) {
     const firstPageGallery = document.querySelector('.first-page__list');
@@ -35,8 +47,25 @@ function removeClassActiveFromPictures() {
   }
 }
 
-buttonTrain.addEventListener('click', removeClassActiveFromPictures);
-buttonPlay.addEventListener('click', addClassActiveFromPictures);
+function returnClassTrainFromCards() {
+  if (document.querySelector('.card-container')) {
+    const cardContainer = document.querySelector('.container').children;
+    for (let i = 0; i < cardContainer.length; i++) {
+      cardContainer[i].children[0].classList.remove('card-cover');
+      cardContainer[i].children[0].children[0].children[0].classList.remove('none');
+      cardContainer[i].children[0].children[2].classList.remove('none');
+    }
+  }
+}
+
+buttonTrain.addEventListener('click', () => {
+  removeClassActiveFromPictures();
+  returnClassTrainFromCards();
+});
+buttonPlay.addEventListener('click', () => {
+  addClassActiveFromPictures();
+  addClassPlayFromCards();
+});
 burgerMenu.addEventListener('click', toggleClassActiveBurgerMenu);
 
 function removePageContent() {
@@ -85,6 +114,9 @@ const headerList = document.querySelector('.header__list');
 headerList.addEventListener('click', (event) => {
   if (event.target.dataset.id > 0) {
     renderCardsToDom(event.target.dataset.id);
+    if (buttonPlay.checked) {
+      addClassPlayFromCards();
+    }
   } else {
     renderPicturesToDom();
   }
@@ -113,7 +145,7 @@ firstPageGallery.addEventListener('click', (event) => {
   }
 
   // если картинка то воспроизвести озвучку
-  if (event.target.classList.contains('front')) {
+  if (event.target.classList.contains('front') && buttonTrain.checked) {
     const sourceNameAudio = event.target.firstElementChild.innerText;
     const audio = new Audio(`audio/${sourceNameAudio}.mp3`);
     audio.play();
