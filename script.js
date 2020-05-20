@@ -90,6 +90,9 @@ function renderPicturesToDom() {
     firstPageList.append(picture.generatePicture());
   });
   firstPageContent.append(firstPageList);
+  if (buttonPlay.checked) {
+    addClassActiveFromPictures();
+  }
 }
 
 function generateCards(data) {
@@ -105,6 +108,9 @@ function renderCardsToDom(id) {
   generateCards(cardsData).forEach((picture) => {
     if (picture.id === Number(id)) {
       secondPageContent.append(picture.generateCard());
+    }
+    if (buttonPlay.checked) {
+      addClassPlayFromCards();
     }
   });
 }
@@ -144,7 +150,7 @@ firstPageGallery.addEventListener('click', (event) => {
     handler(event);
   }
 
-  // если картинка то воспроизвести озвучку
+  // если картинка и режим тренировки то воспроизвести озвучку
   if (event.target.classList.contains('front') && buttonTrain.checked) {
     const sourceNameAudio = event.target.firstElementChild.innerText;
     const audio = new Audio(`audio/${sourceNameAudio}.mp3`);
