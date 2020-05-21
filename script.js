@@ -8,6 +8,8 @@ import { cardsData } from './js/cards.js';
 const buttonTrain = document.querySelector('#radio-one');
 const buttonPlay = document.querySelector('#radio-two');
 const burgerMenu = document.querySelector('.header__burger');
+const container = document.querySelector('.container');
+const buttonStartGame = document.createElement('button');
 
 // показать-спрятать бургер-меню
 function toggleClassActiveBurgerMenu() {
@@ -38,7 +40,7 @@ function removeClassActiveFromPictures() {
 
 function addClassPlayFromCards() {
   if (document.querySelector('.card-container')) {
-    const cardContainer = document.querySelector('.container').children;
+    const cardContainer = container.children;
     for (let i = 1; i < cardContainer.length; i++) {
       cardContainer[i].children[0].classList.add('card-cover');
       cardContainer[i].children[0].children[0].children[0].classList.add('none');
@@ -49,7 +51,7 @@ function addClassPlayFromCards() {
 
 function returnClassTrainFromCards() {
   if (document.querySelector('.card-container')) {
-    const cardContainer = document.querySelector('.container').children;
+    const cardContainer = container.children;
     for (let i = 1; i < cardContainer.length; i++) {
       cardContainer[i].children[0].classList.remove('card-cover');
       cardContainer[i].children[0].children[0].children[0].classList.remove('none');
@@ -68,22 +70,38 @@ function removeClassPlayFromBurgerMenu() {
   headerMenu.classList.remove('play');
 }
 
+function createButtonStartGame() {
+  const section = document.querySelector('.first-page');
+  buttonStartGame.className = 'start-game';
+  buttonStartGame.innerText = 'Start Game';
+  section.append(buttonStartGame);
+}
+
+function removeButtonStartGame() {
+  if (buttonStartGame) {
+    buttonStartGame.remove();
+  }
+}
+
 buttonTrain.addEventListener('click', () => {
   removeClassActiveFromPictures();
   returnClassTrainFromCards();
   removeClassPlayFromBurgerMenu();
+  removeButtonStartGame();
 });
 buttonPlay.addEventListener('click', () => {
   addClassActiveFromPictures();
   addClassPlayFromCards();
   addClassPlayFromBurgerMenu();
+  if (document.querySelector('.card-container')) {
+    createButtonStartGame();
+  }
 });
 burgerMenu.addEventListener('click', toggleClassActiveBurgerMenu);
 
 function removePageContent() {
-  const secondPageContent = document.querySelector('.container');
-  secondPageContent.innerHTML = '';
-  return secondPageContent;
+  container.innerHTML = '';
+  return container;
 }
 
 function generatePictures(data) {
@@ -142,9 +160,11 @@ headerList.addEventListener('click', (event) => {
     renderCardsToDom(event.target.dataset.id);
     if (buttonPlay.checked) {
       addClassPlayFromCards();
+      createButtonStartGame();
     }
   } else {
     renderPicturesToDom();
+    removeButtonStartGame();
   }
 });
 
@@ -156,14 +176,16 @@ function handler(event) {
 }
 
 // Обработчики на контейнере первой и второй страниц
-const firstPageGallery = document.querySelector('.container');
-firstPageGallery.onmouseout = handler;
-firstPageGallery.addEventListener('click', (event) => {
+container.onmouseout = handler;
+container.addEventListener('click', (event) => {
   // если обратная сторона картинки то ничего не делаем
   if (event.target.className === 'back') return;
   // если есть id и  id > 0 то это титульная страница и можно по ним сделать сортировку 2 страницы
-  if (event.target.dataset.id > 0) {
+  if (event.target.dataset.id > 0 && document.querySelector('.first-page__list')) {
     renderCardsToDom(event.target.dataset.id);
+    if (buttonPlay.checked) {
+      createButtonStartGame();
+    }
   }
 
   // если это div class = 'rotate' то делаем переворот картинки
