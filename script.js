@@ -26,17 +26,6 @@ function addClassActiveFromPictures() {
   }
 }
 
-function addClassPlayFromCards() {
-  if (document.querySelector('.card-container')) {
-    const cardContainer = document.querySelector('.container').children;
-    for (let i = 0; i < cardContainer.length; i++) {
-      cardContainer[i].children[0].classList.add('card-cover');
-      cardContainer[i].children[0].children[0].children[0].classList.add('none');
-      cardContainer[i].children[0].children[2].classList.add('none');
-    }
-  }
-}
-
 function removeClassActiveFromPictures() {
   if (document.querySelector('.first-page__list')) {
     const firstPageGallery = document.querySelector('.first-page__list');
@@ -47,10 +36,21 @@ function removeClassActiveFromPictures() {
   }
 }
 
+function addClassPlayFromCards() {
+  if (document.querySelector('.card-container')) {
+    const cardContainer = document.querySelector('.container').children;
+    for (let i = 1; i < cardContainer.length; i++) {
+      cardContainer[i].children[0].classList.add('card-cover');
+      cardContainer[i].children[0].children[0].children[0].classList.add('none');
+      cardContainer[i].children[0].children[2].classList.add('none');
+    }
+  }
+}
+
 function returnClassTrainFromCards() {
   if (document.querySelector('.card-container')) {
     const cardContainer = document.querySelector('.container').children;
-    for (let i = 0; i < cardContainer.length; i++) {
+    for (let i = 1; i < cardContainer.length; i++) {
       cardContainer[i].children[0].classList.remove('card-cover');
       cardContainer[i].children[0].children[0].children[0].classList.remove('none');
       cardContainer[i].children[0].children[2].classList.remove('none');
@@ -58,13 +58,25 @@ function returnClassTrainFromCards() {
   }
 }
 
+function addClassPlayFromBurgerMenu() {
+  const headerMenu = document.querySelector('.header__menu');
+  headerMenu.classList.add('play');
+}
+
+function removeClassPlayFromBurgerMenu() {
+  const headerMenu = document.querySelector('.header__menu');
+  headerMenu.classList.remove('play');
+}
+
 buttonTrain.addEventListener('click', () => {
   removeClassActiveFromPictures();
   returnClassTrainFromCards();
+  removeClassPlayFromBurgerMenu();
 });
 buttonPlay.addEventListener('click', () => {
   addClassActiveFromPictures();
   addClassPlayFromCards();
+  addClassPlayFromBurgerMenu();
 });
 burgerMenu.addEventListener('click', toggleClassActiveBurgerMenu);
 
@@ -86,6 +98,9 @@ function renderPicturesToDom() {
   const firstPageContent = removePageContent();
   const firstPageList = document.createElement('div');
   firstPageList.className = 'first-page__list';
+  const rating = document.createElement('div');
+  rating.className = 'rating';
+  firstPageContent.append(rating);
   generatePictures(picturesData).forEach((picture) => {
     firstPageList.append(picture.generatePicture());
   });
@@ -105,6 +120,9 @@ function generateCards(data) {
 
 function renderCardsToDom(id) {
   const secondPageContent = removePageContent();
+  const rating = document.createElement('div');
+  rating.className = 'rating';
+  secondPageContent.append(rating);
   generateCards(cardsData).forEach((picture) => {
     if (picture.id === Number(id)) {
       secondPageContent.append(picture.generateCard());
@@ -118,6 +136,8 @@ function renderCardsToDom(id) {
 // сорт 2 страницы из меню-бургер по id
 const headerList = document.querySelector('.header__list');
 headerList.addEventListener('click', (event) => {
+  const link = event.target.closest('a');
+  if (!link) return;
   if (event.target.dataset.id > 0) {
     renderCardsToDom(event.target.dataset.id);
     if (buttonPlay.checked) {
@@ -139,6 +159,8 @@ function handler(event) {
 const firstPageGallery = document.querySelector('.container');
 firstPageGallery.onmouseout = handler;
 firstPageGallery.addEventListener('click', (event) => {
+  // если обратная сторона картинки то ничего не делаем
+  if (event.target.className === 'back') return;
   // если есть id и  id > 0 то это титульная страница и можно по ним сделать сортировку 2 страницы
   if (event.target.dataset.id > 0) {
     renderCardsToDom(event.target.dataset.id);
