@@ -11,7 +11,7 @@ const burgerMenu = document.querySelector('.header__burger');
 const container = document.querySelector('.container');
 const buttonStartGame = document.createElement('button');
 
-// показать-спрятать бургер-меню
+
 function toggleClassActiveBurgerMenu() {
   const headerMenu = document.querySelector('.header__menu');
   burgerMenu.classList.toggle('active');
@@ -83,6 +83,10 @@ function removeButtonStartGame() {
   }
 }
 
+function addClassRepeatButtonStartGame() {
+  buttonStartGame.classList.add('repeat');
+}
+
 buttonTrain.addEventListener('click', () => {
   removeClassActiveFromPictures();
   returnClassTrainFromCards();
@@ -97,7 +101,11 @@ buttonPlay.addEventListener('click', () => {
     createButtonStartGame();
   }
 });
+buttonStartGame.addEventListener('click', () => {
+  addClassRepeatButtonStartGame();
+});
 burgerMenu.addEventListener('click', toggleClassActiveBurgerMenu);
+
 
 function removePageContent() {
   container.innerHTML = '';
@@ -154,14 +162,19 @@ function renderCardsToDom(id) {
 // сорт 2 страницы из меню-бургер по id
 const headerList = document.querySelector('.header__list');
 headerList.addEventListener('click', (event) => {
+  // если между ссылок то return
   const link = event.target.closest('a');
   if (!link) return;
+  // если ссылка то рендерим по id в DOM вторую страницу с нужными карточками
   if (event.target.dataset.id > 0) {
     renderCardsToDom(event.target.dataset.id);
+    // если нажата кнопка Play
+    // то во время рендера создать кнопку StartGame и добавить к карточкам класс Play
     if (buttonPlay.checked) {
       addClassPlayFromCards();
       createButtonStartGame();
     }
+    // если нажата кнопка Train то во время отрисовки первой страницы удалить кнопку StartGame
   } else {
     renderPicturesToDom();
     removeButtonStartGame();
@@ -180,9 +193,11 @@ container.onmouseout = handler;
 container.addEventListener('click', (event) => {
   // если обратная сторона картинки то ничего не делаем
   if (event.target.className === 'back') return;
+
   // если есть id и  id > 0 то это титульная страница и можно по ним сделать сортировку 2 страницы
   if (event.target.dataset.id > 0 && document.querySelector('.first-page__list')) {
     renderCardsToDom(event.target.dataset.id);
+    // если нажата кнопка Play то во время рендера создать кнопку StartGame
     if (buttonPlay.checked) {
       createButtonStartGame();
     }
