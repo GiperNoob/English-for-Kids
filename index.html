@@ -7,55 +7,40 @@
     <link rel="stylesheet" href="css/clear-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>English for kids</title>
 </head>
 <body>
-    <div class="wrapper">
-        <header class="header">
-            <div class="header-container">
-                <div class="header__body">
-                    <nav class="header__menu">
-                        <ul class="header__list">
-                            <li><a href="#" data-id="0" class="header__link">Main Page</a></li>
-                            <li><a href="#" data-id="1" class="header__link">Action (set A)</a></li>
-                            <li><a href="#" data-id="2" class="header__link">Action (set B)</a></li>
-                            <li><a href="#" data-id="3" class="header__link">Action (set C)</a></li>
-                            <li><a href="#" data-id="4" class="header__link">Adjective</a></li>
-                            <li><a href="#" data-id="5" class="header__link">Animal (Set A)</a></li>
-                            <li><a href="#" data-id="6" class="header__link">Animal (Set B)</a></li>
-                            <li><a href="#" data-id="7" class="header__link">Clothes</a></li>
-                            <li><a href="#" data-id="8" class="header__link">Emotion</a></li>
-                        </ul>
-                    </nav>
-                    <div class="header__burger">
-                        <span></span>
+    <div class="root">
+        <div class="app-container">
+                    <div class="header-container">
+                            <nav class="header__menu">
+                                <ul class="header__list">
+                                    <li><a href="#" class="header__link" id="Main Page">Main Page</a></li>
+                                    <li><a href="#" class="header__link" id="Action Set(A)">Action Set(A)</a></li>
+                                    <li><a href="#" class="header__link" id="Action Set(B)">Action Set(B)</a></li>
+                                    <li><a href="#" class="header__link" id="Action Set(C)">Action Set(C)</a></li>
+                                    <li><a href="#" class="header__link" id="Adjective">Adjective</a></li>
+                                    <li><a href="#" class="header__link" id="Animal Set(A)">Animal Set(A)</a></li>
+                                    <li><a href="#" class="header__link" id="Animal Set(B)">Animal Set(B)</a></li>
+                                    <li><a href="#" class="header__link" id="Clothes">Clothes</a></li>
+                                    <li><a href="#" class="header__link" id="Emotion">Emotion</a></li>
+                                </ul>
+                            </nav>
+                            <div class="header__burger">
+                                <span></span>
+                            </div>
+                            <div class="switch-field">
+                                <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
+                                <label for="radio-one">Train</label>
+                                <input type="radio" id="radio-two" name="switch-one" value="no" />
+                                <label for="radio-two">Play</label>
+                            </div>
                     </div>
-                    <div class="switch-field">
-                        <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
-                        <label for="radio-one">Train</label>
-                        <input type="radio" id="radio-two" name="switch-one" value="no" />
-                        <label for="radio-two">Play</label>
-                    </div>
-                </div>
+            <div class="container main-container">
+                
             </div>
-        </header>
+        </div>
     </div>
-
-        <section class="first-page">
-            <div class="container">
-                <div class="rating"></div>
-                <div class="first-page__list">
-                    <div><a href="#" data-id="1" class="first-page__link"><img src="images/dance.jpg" alt="">Action (set A)</a></div>
-                    <div><a href="#" data-id="2" class="first-page__link"><img src="images/swim.jpg" alt="">Action (set B)</a></div>
-                    <div><a href="#" data-id="3" class="first-page__link"><img src="images/cry.jpg" alt="">Action (set C)</a></div>
-                    <div><a href="#" data-id="4" class="first-page__link"><img src="images/dance.jpg" alt="">Adjective</a></div>
-                    <div><a href="#" data-id="5" class="first-page__link"><img src="images/cat.jpg" alt="">Animal (Set A)</a></div>
-                    <div><a href="#" data-id="6" class="first-page__link"><img src="images/bird.jpg" alt="">Animal (Set B)</a></div>
-                    <div><a href="#" data-id="7" class="first-page__link"><img src="images/dress.jpg" alt="">Clothes</a></div>
-                    <div><a href="#" data-id="8" class="first-page__link"><img src="images/happy.jpg" alt="">Emotion</a></div>
-                </div>
-            </div>
-        </section>
-    <script src="script.js" type="module"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>

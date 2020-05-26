@@ -1,43 +1,43 @@
 /* eslint-disable import/prefer-default-export */
 export const picturesData = [
   {
-    id: 1,
-    title: 'Action (set A)',
+    title: 'Action Set(A)',
     urlToImage: 'images/dance.jpg',
+    alt: 'Action Set(A)',
   },
   {
-    id: 2,
-    title: 'Action (set B)',
+    title: 'Action Set(B)',
     urlToImage: 'images/swim.jpg',
+    alt: 'Action Set(B)',
   },
   {
-    id: 3,
-    title: 'Action (set C)',
-    urlToImage: 'images/cry.jpg',
+    title: 'Action Set(C)',
+    urlToImage: 'images/drive.jpg',
+    alt: 'Action Set(C)',
   },
   {
-    id: 4,
     title: 'Adjective',
     urlToImage: 'images/dance.jpg',
+    alt: 'Adjective',
   },
   {
-    id: 5,
-    title: 'Animal (Set A)',
+    title: 'Animal Set(A)',
     urlToImage: 'images/cat.jpg',
+    alt: 'Animal Set(A)',
   },
   {
-    id: 6,
-    title: 'Animal (Set B)',
+    title: 'Animal Set(B)',
     urlToImage: 'images/bird.jpg',
+    alt: 'Animal Set(B)',
   },
   {
-    id: 7,
     title: 'Clothes',
     urlToImage: 'images/dress.jpg',
+    alt: 'Clothes',
   },
   {
-    id: 8,
     title: 'Emotion',
     urlToImage: 'images/happy.jpg',
+    alt: 'Emotion',
   },
 ];
