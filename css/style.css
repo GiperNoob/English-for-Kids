@@ -235,7 +235,7 @@
 .start-game.repeat {
     width: 65px;
     font-size: 0;
-    background-image: url(/images/repeat.svg),linear-gradient(40deg,#ffd86f,#fc6262);
+    background-image: url(../images/repeat.svg),linear-gradient(40deg,#ffd86f,#fc6262);
     border-radius: 50%;
     background-repeat: no-repeat;
     background-size: 32px 32px,cover;
@@ -333,7 +333,7 @@
     position: absolute;
     width: 50px;
     height: 50px;
-    background-image: url(/images/rotate.svg);
+    background-image: url(../images/rotate.svg);
     background-size: 32px;
     background-repeat: no-repeat;
     background-position: center 16px;
